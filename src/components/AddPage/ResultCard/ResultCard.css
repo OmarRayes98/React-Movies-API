@@ -32,3 +32,23 @@
     margin-right: 10px;
     margin-top: 5px ;
 }
+
+@media screen and (max-width:524px) {
+    
+    .result-card .poster-wrapper img{
+        height: 100%;
+    }
+
+    .result-card .controls button {
+        width: 65%;
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width:350px) {
+    
+    .result-card .controls button {
+        font-size: 10px;
+    }
+}

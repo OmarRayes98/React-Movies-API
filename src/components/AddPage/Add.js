@@ -11,9 +11,10 @@ const Add = () => {
   // const [loading, setLoading]= useState(false);
 
   const [movies, setMovies]= useState([]);
+  const [loading, setLoading] = useState(false);
+
 
   const inputRef = useRef(null);
-  const loading = useRef(false);
 
 
 
@@ -27,22 +28,23 @@ const Add = () => {
         setMovies((pre) => pre=[]);
         return;
         }
+        
         if(searchValue.length > 2){
   
-          loading.current=true;
+          setLoading(true);
           
         await axios.get(`https://www.omdbapi.com/?s=${searchValue}&page=${page}&apikey=2f965a68`).then(response =>{
           console.log(response.data);
 
         if(response.data.Response==='True'){
           setMovies(pre => [...pre , ...response.data.Search]);
-          setTotoalPage((pre)=>pre=response.data.totalResults);
+          setTotoalPage(response.data.totalResults);
   
         }else{
           console.log(response.data.Error);
           setMovies([]);
         }
-        loading.current=false;
+        setLoading(false);
   
         })
 
@@ -50,7 +52,7 @@ const Add = () => {
     }catch(err){
         console.log(err);
         setMovies([]);
-        loading.current=false;
+        setLoading(false);
   
   
       }
@@ -83,7 +85,7 @@ const Add = () => {
 
                         {page < totalPage &&(
                         <button className='btn-more'
-                          onClick={()=>setPage((page) =>page + 1)}>{loading ? "Loading...." : "Load More"}
+                          onClick={()=>setPage(page + 1)}>{loading ? "Loading...." : "Load More"}
                         </button>
                         )}
                         </>

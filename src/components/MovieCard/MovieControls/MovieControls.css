@@ -30,3 +30,9 @@
     color: var(--secondary);
     cursor: pointer;
 }
+
+@media screen and (max-width:524px) {
+    .ctrl-btn{
+        font-size: 0.8rem;
+    }
+}
